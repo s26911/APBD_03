@@ -1,1 +1,6 @@
-﻿Console.WriteLine("Hello, World!");
+﻿namespace Kontenery_app;
+
+class Program
+{
+    
+}
