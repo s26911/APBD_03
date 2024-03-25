@@ -2,22 +2,21 @@
 
 public abstract class Container
 {
-    protected double LoadMassKg { get; set; }
-    protected double OwnWeightKg { get; set; }
-    protected double HeightCm { get; set; }
-    protected double DepthCm { get; set; }
-    protected string SerialNumber { get; set; }
+    public double LoadMassKg { get; set; }
+    public double OwnWeightKg { get; set; }
     protected double CapacityKg { get; set; }
-    protected static int SerialNumberIndex { get; set; } = 1;
+    protected int HeightCm { get; set; }
+    protected int DepthCm { get; set; }
+    public string SerialNumber { get; set; }
 
-    protected Container(int loadMassKg, int heightCm, int ownWeightKg, int depthCm, int capacityKg)
+    protected Container(double ownWeightKg, double capacityKg, int heightCm, int depthCm)
     {
-        LoadMassKg = loadMassKg;
-        HeightCm = heightCm;
         OwnWeightKg = ownWeightKg;
-        DepthCm = depthCm;
-        SerialNumber = GenerateSerialNumber();
         CapacityKg = capacityKg;
+        HeightCm = heightCm;
+        DepthCm = depthCm;
+        LoadMassKg = 0;
+        SerialNumber = GenerateSerialNumber();
     }
 
     protected abstract string GenerateSerialNumber();

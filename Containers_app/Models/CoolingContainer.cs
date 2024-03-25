@@ -4,8 +4,10 @@ namespace Kontenery_app.Models;
 
 public class CoolingContainer : Container
 {
-    public string? Type { get; set; }
+    public string Type { get; set; }
     public double Temperature { get; set; }
+    protected static int SerialNumberIndex { get; set; } = 1;
+
 
     public Dictionary<string, double> ProductsTemperatures = new Dictionary<string, double>()
     {
@@ -15,14 +17,13 @@ public class CoolingContainer : Container
         { "eggs", 19 }
     };
 
-
-    public CoolingContainer(int loadMassKg, int heightCm, int ownWeightKg, int depthCm,
-        int capacityKg, string? type, double temperature) : base(loadMassKg, heightCm, ownWeightKg, depthCm,
-        capacityKg)
+    public CoolingContainer(double ownWeightKg, double capacityKg, int heightCm, int depthCm, string type,
+        double temperature) : base(ownWeightKg, capacityKg, heightCm, depthCm)
     {
-        Type = type.ToLower();
+        Type = type;
         Temperature = temperature;
     }
+
 
     protected override string GenerateSerialNumber()
     {
@@ -39,17 +40,29 @@ public class CoolingContainer : Container
         if (massToLoad > CapacityKg)
             throw new OverfillException();
 
-        CapacityKg = massToLoad;
+        LoadMassKg = massToLoad;
     }
 
     public void LoadWithCheck(double mass, string productType)
     {
         if (productType.ToLower() != Type)
-            Console.WriteLine("Incorrect product type! Aborting operation...");
-        else if (Temperature < ProductsTemperatures[Type])
-            Console.WriteLine("Temperature of the container over required " + ProductsTemperatures[Type]
-                                                                            + " for type " + Type);
-        else
-            Load(mass);
+            throw new IncorrectProductTypeException();
+        if (Temperature > ProductsTemperatures[Type])
+            throw new TemperatureTooHighException(Type, ProductsTemperatures[Type]);
+
+        Load(mass);
+    }
+
+    public override string ToString()
+    {
+        return String.Format("Gas container nr. {0}" +
+                             "\nLoad mass [kg]:\t\t{1}" +
+                             "\nOwn weight [kg]:\t{2}" +
+                             "\nCapacity [kg]:\t\t{3}" +
+                             "\nHeight [cm]:\t\t{4}" +
+                             "\nDepth [cm]:\t\t{5}" +
+                             "\nType [atm]:\t\t{6}" +
+                             "\nTemperature [\u00b0C]:\t{7}\n", SerialNumber, LoadMassKg, OwnWeightKg, CapacityKg,
+            HeightCm, DepthCm, Type, Temperature);
     }
 }

@@ -1,12 +1,12 @@
 namespace Kontenery_app.Models;
 
-class LiquidContainer : Container, IHazardNotifier
+public class LiquidContainer : Container, IHazardNotifier
 {
     private bool IsDangerous { get; set; }
+    protected static int SerialNumberIndex { get; set; } = 1;
 
-    public LiquidContainer(int loadMassKg, int heightCm, int ownWeightKg, int depthCm,
-        int capacityKg, bool isDangerous)
-        : base(loadMassKg, heightCm, ownWeightKg, depthCm, capacityKg)
+
+    public LiquidContainer(double ownWeightKg, double capacityKg, int heightCm, int depthCm, bool isDangerous) : base(ownWeightKg, capacityKg, heightCm, depthCm)
     {
         IsDangerous = isDangerous;
     }
@@ -33,6 +33,17 @@ class LiquidContainer : Container, IHazardNotifier
 
     public void HazardWarning(string info)
     {
-        Console.WriteLine("TODO NIEB. SYT." + info);
+        Console.WriteLine("HAZARD WARNING: " + info);
+    }
+
+    public override string ToString()
+    {
+        return String.Format("Gas container nr. {0}" +
+                             "\nLoad mass [kg]:\t\t{1}" +
+                             "\nOwn weight [kg]:\t{2}" +
+                             "\nCapacity [kg]:\t\t{3}" +
+                             "\nHeight [cm]:\t\t{4}" +
+                             "\nDepth [cm]:\t\t{5}" +
+                             "\nDangerous:\t\t{6}\n", SerialNumber, LoadMassKg, OwnWeightKg, CapacityKg, HeightCm,DepthCm, IsDangerous );
     }
 }
