@@ -4,12 +4,12 @@ namespace Kontenery_app.Models;
 
 public class CoolingContainer : Container
 {
-    public string Type { get; set; }
-    public double Temperature { get; set; }
-    protected static int SerialNumberIndex { get; set; } = 1;
+    private string Type { get; }
+    private double Temperature { get; set; }
+    private static int SerialNumberIndex { get; set; } = 1;
 
 
-    public Dictionary<string, double> ProductsTemperatures = new Dictionary<string, double>()
+    private readonly Dictionary<string, double> _productsTemperatures = new Dictionary<string, double>()
     {
         { "bananas", 13.3 }, { "chocolate", 18 }, { "fish", 2 },
         { "meat", -15 }, { "ice cream", -18 }, { "frozen pizza", -30 },
@@ -47,8 +47,8 @@ public class CoolingContainer : Container
     {
         if (productType.ToLower() != Type)
             throw new IncorrectProductTypeException();
-        if (Temperature > ProductsTemperatures[Type])
-            throw new TemperatureTooHighException(Type, ProductsTemperatures[Type]);
+        if (Temperature > _productsTemperatures[Type])
+            throw new TemperatureTooHighException(Type, _productsTemperatures[Type]);
 
         Load(mass);
     }

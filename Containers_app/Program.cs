@@ -49,9 +49,9 @@ class Program
         // Unsuccessful
         // try
         // {
-        //     coolingContainer1.LoadWithCheck(999999999, "chocolate");     // too much
-        //     coolingContainer1.LoadWithCheck(500, "meat");                // wrong type 
-        //     coolingContainer2.LoadWithCheck(500, "bananas"); // too hot
+        // coolingContainer1.LoadWithCheck(999999999, "chocolate");     // too much
+        // coolingContainer1.LoadWithCheck(500, "meat");                // wrong type 
+        // coolingContainer2.LoadWithCheck(500, "bananas"); // too hot
         // }
         // catch (Exception e)
         // {
@@ -68,15 +68,15 @@ class Program
         ship.LoadContainer(liquidContainer2);
         // ship.LoadContainer(coolingContainer1);
         // ship.LoadContainer(coolingContainer2);
-        
+
         // Loading list of containers on ship ##########################################################
         // ship.LoadContainer(new List<Container>(){liquidContainer1, liquidContainer2, gasContainer1});
         // Console.WriteLine(ship);
-        
+
         // Remove container from ship ##################################################################
         // ship.RemoveContainer(liquidContainer1);
         // Console.WriteLine(ship);
-        
+
         // Unload the container ########################################################################
         // Console.WriteLine(liquidContainer1);
         // liquidContainer1.Unload();
@@ -85,19 +85,17 @@ class Program
         // Console.WriteLine(gasContainer1);
         // gasContainer1.Unload();
         // Console.WriteLine(gasContainer1);
-        
+
         // Replace container on ship ###################################################################
         // Console.WriteLine(ship);
         // ship.ReplaceContainer(liquidContainer1.SerialNumber, gasContainer1);
         // Console.WriteLine(ship);
-        
+
         // Move container between two ships ############################################################
-        Console.WriteLine(ship);
-        Console.WriteLine(ship2);
-        ship.MoveContainerBetweenShips(ship2, liquidContainer1.SerialNumber);
-        Console.WriteLine(ship);
-        Console.WriteLine(ship2);
-        
-        
+        // Console.WriteLine(ship);
+        // Console.WriteLine(ship2);
+        // ship.MoveContainerBetweenShips(ship2, liquidContainer1.SerialNumber);
+        // Console.WriteLine(ship);
+        // Console.WriteLine(ship2);
     }
 }

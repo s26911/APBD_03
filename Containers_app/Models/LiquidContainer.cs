@@ -2,11 +2,12 @@ namespace Kontenery_app.Models;
 
 public class LiquidContainer : Container, IHazardNotifier
 {
-    private bool IsDangerous { get; set; }
-    protected static int SerialNumberIndex { get; set; } = 1;
+    private bool IsDangerous { get; }
+    private static int SerialNumberIndex { get; set; } = 1;
 
 
-    public LiquidContainer(double ownWeightKg, double capacityKg, int heightCm, int depthCm, bool isDangerous) : base(ownWeightKg, capacityKg, heightCm, depthCm)
+    public LiquidContainer(double ownWeightKg, double capacityKg, int heightCm, int depthCm, bool isDangerous) : base(
+        ownWeightKg, capacityKg, heightCm, depthCm)
     {
         IsDangerous = isDangerous;
     }
@@ -44,6 +45,7 @@ public class LiquidContainer : Container, IHazardNotifier
                              "\nCapacity [kg]:\t\t{3}" +
                              "\nHeight [cm]:\t\t{4}" +
                              "\nDepth [cm]:\t\t{5}" +
-                             "\nDangerous:\t\t{6}\n", SerialNumber, LoadMassKg, OwnWeightKg, CapacityKg, HeightCm,DepthCm, IsDangerous );
+                             "\nDangerous:\t\t{6}\n", SerialNumber, LoadMassKg, OwnWeightKg, CapacityKg, HeightCm,
+            DepthCm, IsDangerous);
     }
 }

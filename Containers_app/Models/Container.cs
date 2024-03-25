@@ -2,12 +2,12 @@
 
 public abstract class Container
 {
-    public double LoadMassKg { get; set; }
-    public double OwnWeightKg { get; set; }
-    protected double CapacityKg { get; set; }
-    protected int HeightCm { get; set; }
-    protected int DepthCm { get; set; }
-    public string SerialNumber { get; set; }
+    public double LoadMassKg { get; protected set; }
+    public double OwnWeightKg { get; }
+    protected double CapacityKg { get; }
+    protected int HeightCm { get; }
+    protected int DepthCm { get; }
+    public string SerialNumber { get; }
 
     protected Container(double ownWeightKg, double capacityKg, int heightCm, int depthCm)
     {

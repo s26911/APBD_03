@@ -4,11 +4,12 @@ namespace Kontenery_app.Models;
 
 public class GasContainer : Container, IHazardNotifier
 {
-    public double Pressure { get; set; }
-    protected static int SerialNumberIndex { get; set; } = 1;
+    private double Pressure { get; }
+    private static int SerialNumberIndex { get; set; } = 1;
 
 
-    public GasContainer(double ownWeightKg, double capacityKg, int heightCm, int depthCm, double pressure) : base(ownWeightKg, capacityKg, heightCm, depthCm)
+    public GasContainer(double ownWeightKg, double capacityKg, int heightCm, int depthCm, double pressure) : base(
+        ownWeightKg, capacityKg, heightCm, depthCm)
     {
         Pressure = pressure;
     }
@@ -47,6 +48,7 @@ public class GasContainer : Container, IHazardNotifier
                              "\nCapacity [kg]:\t\t{3}" +
                              "\nHeight [cm]:\t\t{4}" +
                              "\nDepth [cm]:\t\t{5}" +
-                             "\nPressure [atm]:\t\t{6}\n", SerialNumber, LoadMassKg, OwnWeightKg, CapacityKg, HeightCm,DepthCm,Pressure );
+                             "\nPressure [atm]:\t\t{6}\n", SerialNumber, LoadMassKg, OwnWeightKg, CapacityKg, HeightCm,
+            DepthCm, Pressure);
     }
 }
